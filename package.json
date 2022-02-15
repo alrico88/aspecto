@@ -1,6 +1,12 @@
 {
   "name": "aspecto",
   "version": "0.0.0",
+  "license": "MIT",
+  "author": {
+    "name": "Alberto Rico",
+    "url": "https://alrico.es"
+  },
+  "private": true,
   "scripts": {
     "dev": "vite",
     "build": "vite build",
