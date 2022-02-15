@@ -26,7 +26,8 @@
               id="iWidth",
               v-model="input.width",
               :disabled="hasOriginalImage",
-              :min="0"
+              :min="0",
+              placeholder="pixels"
             )
           .form-group
             label(for="iHeight") Height
@@ -35,7 +36,8 @@
               id="iHeight",
               v-model="input.height",
               :disabled="hasOriginalImage",
-              :min="0"
+              :min="0",
+              placeholder="pixels"
             )
         small.d-block.text-success(v-if="hasOriginalImage") Image loaded
         template(v-else)
@@ -70,7 +72,8 @@
               id="dWidth",
               :value="dWidth",
               @input="(e) => handleChange('width', e)",
-              :min="0"
+              :min="0",
+              placeholder="pixels"
             )
           .form-group
             label(for="dHeight") Height
@@ -79,7 +82,8 @@
               id="dHeight",
               :value="dHeight",
               @input="(e) => handleChange('height', e)",
-              :min="0"
+              :min="0",
+              placeholder="pixels"
             )
         .d-flex.w-100.justify-content-between.align-items-center(v-if="percentage !== null")
           small {{ percentage }}% of the original
@@ -185,6 +189,10 @@ const handleDrop = async (e) => {
     dragged.value = false;
   } catch (err) {
     errorMsg.value = 'Unsupported image';
+
+    setTimeout(() => {
+      errorMsg.value = null;
+    }, 5000);
     console.error(err);
   }
 };
