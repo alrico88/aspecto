@@ -9,7 +9,7 @@
     )
       .card-body.p-4
         .hstack.gap-2.justify-content-between.align-items-center.pt-3.pb-4
-          h5.mb-0.card-title Original dimensions
+          h5.mb-0.card-title Original dimensions #[small (px.)]
           a.text-danger(
             href="#",
             role="button",
@@ -26,8 +26,7 @@
               id="iWidth",
               v-model="input.width",
               :disabled="hasOriginalImage",
-              :min="0",
-              placeholder="pixels"
+              :min="0"
             )
           .form-group
             label(for="iHeight") Height
@@ -36,8 +35,7 @@
               id="iHeight",
               v-model="input.height",
               :disabled="hasOriginalImage",
-              :min="0",
-              placeholder="pixels"
+              :min="0"
             )
         small.d-block.text-success(v-if="hasOriginalImage") Image loaded
         template(v-else)
@@ -48,7 +46,7 @@
     .card.h-100
       .card-body.p-4
         .hstack.gap-2.justify-content-between.align-items-center.pt-3.pb-4
-          h5.mb-0.card-title Desired dimensions
+          h5.mb-0.card-title Desired dimensions #[small (px.)]
           a(
             href="#",
             role="button",
@@ -72,8 +70,7 @@
               id="dWidth",
               :value="dWidth",
               @input="(e) => handleChange('width', e)",
-              :min="0",
-              placeholder="pixels"
+              :min="0"
             )
           .form-group
             label(for="dHeight") Height
@@ -82,8 +79,7 @@
               id="dHeight",
               :value="dHeight",
               @input="(e) => handleChange('height', e)",
-              :min="0",
-              placeholder="pixels"
+              :min="0"
             )
         .d-flex.w-100.justify-content-between.align-items-center(v-if="percentage !== null")
           small {{ percentage }}% of the original
