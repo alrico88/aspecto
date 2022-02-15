@@ -1,0 +1,46 @@
+:root {
+  --base-fontsize: 1rem;
+  --header-scale: 1.185;
+  --line-height: 1.618;
+  --bg: #ffffff;
+  --accent-bg: #f2f4f8;
+  --text: #4c566a;
+  --text-light: #4c566a;
+  --border: #3b4252;
+  --accent: #5e81ac;
+  --accent-light: #5e81ac;
+  --code: #2e3440;
+  --code-bg: #e5e9f0;
+}
+
+$brdr: #3b4252;
+$accent: #5e81ac;
+$body-bg: #ffffff;
+$body-color: #4c566a;
+$card-bg: $body-bg;
+$border-color: $accent;
+$border-width: 1px;
+$card-border-color: $brdr;
+$input-border-color: $brdr;
+
+@import 'node_modules/bootstrap/scss/bootstrap.scss';
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+}
+
+.form-group {
+  margin-bottom: 10px;
+
+  label {
+    margin-bottom: 10px;
+  }
+}
+
+.drag {
+  border-style: dashed;
+}
+
+footer {
+  border-top: 1px solid $brdr;
+}
