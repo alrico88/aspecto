@@ -2,9 +2,10 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    'vue/setup-compiler-macros': true,
   },
   extends: [
-    'plugin:vue/essential',
+    'plugin:vue/vue3-recommended',
     'airbnb-base',
   ],
   parserOptions: {
@@ -15,8 +16,8 @@ module.exports = {
     'vue',
   ],
   rules: {
-    'no-unused-vars': 'off',
     'import/prefer-default-export': 'off',
     'max-len': 'off',
+    'no-unused-vars': 'off',
   },
 };

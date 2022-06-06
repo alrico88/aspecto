@@ -1,7 +1,7 @@
 <template lang="pug">
 .row.row-cols-md-2.row-cols-1.py-3.g-4
   .col
-    .card.h-100(
+    .card.h-100.mb-2(
       @dragover.prevent="setIsDragged",
       @dragleave.prevent="setUndragged",
       :class="{drag: dragged}",
@@ -42,8 +42,9 @@
           small.d-block(v-if="!dragged") Drag image or enter dimensions
           small.d-block(v-else) Drop image to get dimensions
         small.d-block.text-danger(v-if="errorMsg") {{ errorMsg }}
+    resolutions-presets(@set-preset="setResolutionPreset")
   .col
-    .card.h-100
+    .card.h-100.mb-2
       .card-body.p-4
         .hstack.gap-2.justify-content-between.align-items-center.pt-3.pb-4
           h5.mb-0.card-title Desired dimensions #[small (px.)]
@@ -83,6 +84,7 @@
             )
         .d-flex.w-100.justify-content-between.align-items-center(v-if="percentage !== null")
           small {{ percentage }}% of the original
+    size-presets(:enabled="input.width !== '' && input.height !== ''", @set-preset="setSizePreset")
 </template>
 
 <script setup>
@@ -99,6 +101,8 @@ import {
 } from '../helpers/image';
 import { useImage } from '../composables/useImage';
 import ImagePreview from './ImagePreview.vue';
+import ResolutionsPresets from './ResolutionsPresets.vue';
+import SizePresets from './SizePresets.vue';
 
 const errorMsg = ref(null);
 
@@ -176,7 +180,7 @@ const handleDrop = async (e) => {
     const file = e.dataTransfer.files[0];
     const base64 = await readAsDataURL(file);
     const img = await base64ToImage(base64);
-    const { width, height } = await readImageDimensions(img);
+    const { width, height } = readImageDimensions(img);
 
     originalImg.image = base64;
     originalImg.filename = file.name;
@@ -204,6 +208,19 @@ async function downloadImage() {
 function removeImage() {
   resetOriginalInputs();
   originalImg.image = '';
+}
+
+function setResolutionPreset(width, height) {
+  input.width = width;
+  input.height = height;
+}
+
+function setSizePreset(percent) {
+  handleChange('width', {
+    target: {
+      value: ruleOfThree(100, input.width, percent),
+    },
+  });
 }
 </script>
 

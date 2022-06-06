@@ -12,5 +12,4 @@
 import MainTitle from './components/MainTitle.vue';
 import AppCards from './components/AppCards.vue';
 import FooterCredits from './components/FooterCredits.vue';
-
 </script>
