@@ -1,5 +1,5 @@
 <template lang="pug">
-.d-flex.vh-100.flex-column
+.d-flex.flex-column.h-100
   main.flex-shrink-0
     .container
       main-title

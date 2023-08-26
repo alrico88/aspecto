@@ -1,7 +1,7 @@
 <template lang="pug">
 .row.row-cols-md-2.row-cols-1.py-3.g-4
   .col
-    .card.h-100.mb-2(
+    .card.mb-2(
       @dragover.prevent="setIsDragged",
       @dragleave.prevent="setUndragged",
       :class="{drag: dragged}",
@@ -10,11 +10,9 @@
       .card-body.p-4
         .hstack.gap-2.justify-content-between.align-items-center.pt-3.pb-4
           h5.mb-0.card-title Original dimensions #[small (px.)]
-          a.text-danger(
-            href="#",
-            role="button",
+          button.btn.btn-link.text-danger(
             v-show="hasOriginalImage",
-            @click.prevent="removeImage"
+            @click="removeImage"
           ) Remove image
         .d-flex.text-center.p-4.border.mb-4.rounded.align-items-center.bg-light(v-if="hasOriginalImage")
           image-preview(:image="originalImg.image", :filename="originalImg.filename")
@@ -44,15 +42,13 @@
         small.d-block.text-danger(v-if="errorMsg") {{ errorMsg }}
     resolutions-presets(@set-preset="setResolutionPreset")
   .col
-    .card.h-100.mb-2
+    .card.mb-2
       .card-body.p-4
         .hstack.gap-2.justify-content-between.align-items-center.pt-3.pb-4
           h5.mb-0.card-title Desired dimensions #[small (px.)]
-          a(
-            href="#",
-            role="button",
+          button.btn.btn-link(
             v-show="hasResizedImage",
-            @click.prevent="downloadImage"
+            @click="downloadImage"
           ) Save image
         .d-flex.text-center.p-4.border.mb-4.rounded.align-items-center.bg-light(v-if="hasOriginalImage")
           image-preview(
@@ -82,13 +78,13 @@
               @input="(e) => handleChange('height', e)",
               :min="0"
             )
-        .d-flex.w-100.justify-content-between.align-items-center(v-if="percentage !== null")
-          small {{ percentage }}% of the original
+        .d-flex.w-100.justify-content-between.align-items-center
+          small(v-if="!hasEnteredInput") Please enter original dimensions first
+          small(v-if="percentage !== null") {{ percentage }}% of the original
     size-presets(:enabled="input.width !== '' && input.height !== ''", @set-preset="setSizePreset")
 </template>
 
 <script setup>
-
 import {
   computed, reactive, ref, watch,
 } from 'vue';
@@ -110,6 +106,7 @@ const input = reactive({
   width: '',
   height: '',
 });
+const hasEnteredInput = computed(() => input.width !== '' && input.height !== '');
 
 const dWidth = ref('');
 const dHeight = ref('');

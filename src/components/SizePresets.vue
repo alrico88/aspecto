@@ -1,9 +1,8 @@
 <template lang='pug'>
-.hstack.gap-2
-  .fw-bold Size presets
-  ul.list-unstyled.list-inline.mb-0
-    li.list-inline-item(v-for="preset of presets", :key="preset")
-      button.btn.btn-link.p-0.text-dark(@click="setPreset(preset)", :disabled="!enabled") {{ preset }}%
+ul.list-unstyled.list-inline.mb-0
+  li.list-inline-item.fw-bold Size presets
+  li.list-inline-item(v-for="preset of presets", :key="preset")
+    button.btn.btn-link.p-0.text-dark(@click="setPreset(preset)", :disabled="!enabled") {{ preset }}%
 </template>
 
 <script setup>
